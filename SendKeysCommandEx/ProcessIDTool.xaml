@@ -1,0 +1,45 @@
+﻿<Window x:Class="SendKeysCommandEx.ProcessIDTool"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SendKeysCommandEx"
+        mc:Ignorable="d"
+        Title="プロセスIDツール" Height="400" Width="400" MinHeight="350" MinWidth="376" Icon="Resources/SendKeys.ico" Loaded="Window_Loaded" Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="groupBoxSearchID" Header="プロセスID検索" Margin="10,10,10,10" Grid.Row="0"/>
+        <Label x:Name="labelSearchID" Content="プロセス名：" HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Grid.Row="0"/>
+        <TextBox x:Name="textBoxSearchID" Height="23" Margin="100,32,80,0" VerticalAlignment="Top" ToolTip="正規表現で指定できます。" Grid.Row="0"/>
+        <Button x:Name="buttonSearchID" Content="実行" HorizontalAlignment="Right" Margin="0,32,20,0" VerticalAlignment="Top" Width="50" Grid.Row="0" Click="buttonSearchID_Click"/>
+        <ListBox x:Name="listBoxSearchID" Margin="20,65,20,20" VerticalContentAlignment="Top" Grid.Row="0"/>
+        <GroupBox x:Name="groupBoxConvertID" Header="SendKeysコマンドのプロセスIDを変換" Margin="10,0,10,10" Grid.Row="1">
+        </GroupBox>
+        <Label x:Name="labelConvertIDFrom" Content="変換元ID：" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="textBoxConvertIDFrom" Height="23" Margin="90,22,20,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" Text="0" HorizontalContentAlignment="Right" Grid.Row="1">
+            <i:Interaction.Behaviors>
+                <local:NumberTextBoxBehavior/>
+            </i:Interaction.Behaviors>
+        </TextBox>
+        <Label x:Name="labelConvertIDTo" Content="→ 変換先ID：" HorizontalAlignment="Left" Margin="140,20,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="textBoxConvertIDTo" Height="23" Margin="225,22,20,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" Text="0" HorizontalContentAlignment="Right" Grid.Row="1">
+            <i:Interaction.Behaviors>
+                <local:NumberTextBoxBehavior/>
+            </i:Interaction.Behaviors>
+        </TextBox>
+        <Button x:Name="buttonAddConvertID" Content="追加" HorizontalAlignment="Left" Margin="290,22,0,0" VerticalAlignment="Top" Width="50" Grid.Row="1" Click="buttonAddConvertID_Click"/>
+        <ListBox x:Name="listBoxConvertID" Margin="20,55,80,75" VerticalContentAlignment="Top" Grid.Row="1">
+            <i:Interaction.Behaviors>
+                <local:ItemMovableListBoxBehavior/>
+            </i:Interaction.Behaviors>
+        </ListBox>
+        <Button x:Name="buttonDeleteConvertID" Content="削除" HorizontalAlignment="Right" Margin="0,55,20,0" VerticalAlignment="Top" Width="50" Grid.Row="1" Click="buttonDeleteConvertID_Click"/>
+        <Button x:Name="buttonClearConvertID" Content="ｸﾘｱ" HorizontalAlignment="Right" Margin="0,0,20,75" VerticalAlignment="Bottom" Width="50" Grid.Row="1" Click="buttonClearConvertID_Click"/>
+        <CheckBox x:Name="checkBoxConvertDefaultID" Content="最初にアクティブにするプロセスIDも対象にする" HorizontalAlignment="Left" Margin="20,0,0,50" VerticalAlignment="Bottom" Grid.Row="1"/>
+        <Button x:Name="buttonConvertID" Content="実行" HorizontalAlignment="Right" Margin="0,0,20,20" VerticalAlignment="Bottom" Width="75" Grid.Row="1" Click="buttonConvertID_Click"/>
+    </Grid>
+</Window>
