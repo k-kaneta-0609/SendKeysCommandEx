@@ -15,9 +15,9 @@
         <Menu x:Name="menu" Height="28" VerticalAlignment="Top">
             <Button x:Name="buttonRunSendKeys" Content="実行(_E)" FontSize="10" VerticalContentAlignment="Stretch" Click="buttonRunSendKeys_Click" Padding="10,0"/>
             <MenuItem Header="オプション(_O)" Padding="8,3">
-                <MenuItem x:Name="checkShowBalloon" Header="タスクバーアイコンのバルーン通知を表示しない。" IsCheckable="True" StaysOpenOnClick="True"/>
-                <MenuItem x:Name="checkEndActivate" Header="SendKeysが正常終了した時に画面をアクティブにする。" IsCheckable="True" StaysOpenOnClick="True"/>
-                <MenuItem x:Name="checkCancelActivate" Header="SendKeysが中止条件で終了した時に画面をアクティブにする。" IsCheckable="True" StaysOpenOnClick="True"/>
+                <MenuItem x:Name="checkShowBalloon" Header="タスクバーアイコンのバルーン通知を表示しない。" IsCheckable="True" StaysOpenOnClick="True" IsChecked="True"/>
+                <MenuItem x:Name="checkEndActivate" Header="SendKeysが正常終了した時に画面をアクティブにする。" IsCheckable="True" StaysOpenOnClick="True" IsChecked="True"/>
+                <MenuItem x:Name="checkCancelActivate" Header="SendKeysが中止条件で終了した時に画面をアクティブにする。" IsCheckable="True" StaysOpenOnClick="True" IsChecked="True"/>
             </MenuItem>
             <MenuItem Header="ファイル(_F)" VerticalContentAlignment="Stretch" Padding="8,3">
                 <MenuItem x:Name="menuOpenFile" Header="開く(_O)" Click="menuOpenFile_Click"/>
@@ -25,7 +25,6 @@
             </MenuItem>
             <MenuItem x:Name="menuProssIDTool" Header="ツール(_T)" Click="menuProssIDTool_Click"/>
         </Menu>
-        <GroupBox x:Name="groupBoxSetCommand" Header="コマンド登録" Margin="10,30,10,0" VerticalAlignment="Top" Height="375"/>
         <Label x:Name="labelAddSendKeys" Content="SendKeys" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" Height="28" Width="67"/>
         <ComboBox x:Name="comboBoxAddSendKeys" HorizontalAlignment="Left" Margin="100,52,0,0" VerticalAlignment="Top" Width="120" IsEditable="True" Height="24"/>
         <CheckBox x:Name="checkBoxAddSendKeysShift" Content="Shift" HorizontalAlignment="Left" Margin="235,55,0,0" VerticalAlignment="Top" Height="18" Width="44"/>
@@ -33,12 +32,24 @@
         <CheckBox x:Name="checkBoxAddSendKeysAlt" Content="Alt" HorizontalAlignment="Left" Margin="350,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.301,0.593" Height="18" Width="33"/>
         <Button x:Name="buttonAddSendKeys" Content="追加" HorizontalAlignment="Left" Margin="400,52,0,0" VerticalAlignment="Top" Width="75" Height="24" Click="buttonAddSendKeys_Click"/>
         <Label x:Name="labelAddSleep" Content="Sleep（ミリ秒）" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" Height="28"/>
-        <TextBox x:Name="textBoxAddSleep" HorizontalAlignment="Left" Height="23" Margin="130,93,0,0" Text="1000" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Right" MaxLength="7" MaxLines="1">
+        <TextBox x:Name="textBoxAddSleep" HorizontalAlignment="Left" Height="23" Margin="105,93,0,0" Text="1000" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Right" MaxLength="7" MaxLines="1">
             <i:Interaction.Behaviors>
                 <local:NumberTextBoxBehavior/>
             </i:Interaction.Behaviors>
         </TextBox>
-        <Button x:Name="buttonAddSleep" Content="追加" HorizontalAlignment="Left" Margin="235,93,0,0" VerticalAlignment="Top" Width="75" Height="24" RenderTransformOrigin="2.49,0.5" Click="buttonAddSleep_Click"/>
+        <Button x:Name="buttonAddSleep" Content="追加" HorizontalAlignment="Left" Margin="200,93,0,0" VerticalAlignment="Top" Width="75" Height="24" RenderTransformOrigin="2.49,0.5" Click="buttonAddSleep_Click"/>
+        <TextBox x:Name="textBoxAddSleepRandomFrom" HorizontalAlignment="Left" Height="23" Margin="291,93,0,0" Text="1000" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Right" MaxLength="7" MaxLines="1">
+            <i:Interaction.Behaviors>
+                <local:NumberTextBoxBehavior/>
+            </i:Interaction.Behaviors>
+        </TextBox>
+        <Label x:Name="labelActiveRandom" Content="～" HorizontalAlignment="Left" Margin="377,90,0,0" VerticalAlignment="Top" Height="28" Width="24"/>
+        <TextBox x:Name="textBoxAddSleepRandomTo" HorizontalAlignment="Left" Height="23" Margin="396,93,0,0" Text="10000" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Right" MaxLength="7" MaxLines="1">
+            <i:Interaction.Behaviors>
+                <local:NumberTextBoxBehavior/>
+            </i:Interaction.Behaviors>
+        </TextBox>
+        <Button x:Name="buttonAddSleepRandom" Content="追加" HorizontalAlignment="Left" Margin="491,93,0,0" VerticalAlignment="Top" Width="75" Height="24" RenderTransformOrigin="2.49,0.5" Click="buttonAddSleepRandom_Click"/>
         <Label x:Name="labelActive" Content="Windowをアクティブにする　対象プロセスID：" HorizontalAlignment="Left" Margin="20,130,0,0" VerticalAlignment="Top" Height="28" Width="275"/>
         <TextBox x:Name="textBoxActivePID" HorizontalAlignment="Left" Height="23" Margin="295,132,0,0" Text="0" VerticalAlignment="Top" Width="50" HorizontalContentAlignment="Right" MaxLength="5" MaxLines="1">
             <i:Interaction.Behaviors>

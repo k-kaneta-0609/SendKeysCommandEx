@@ -40,6 +40,7 @@ namespace SendKeysCommandEx
 
         private const string HALF_SPACE_WORD = "{半角スペース}";
         private const string FULL_SPACE_WORD = "{全角スペース}";
+        private const string RANDOM_CHAR = "{ランダム文字}";
 
         private const string FILE_DIALOG_FILTER = "SendKeysファイル(*.skc)|*.skc|すべてのファイル(*.*)|*.*";
         private static Encoding FILE_ENCODIND = Encoding.UTF8;
@@ -130,6 +131,7 @@ namespace SendKeysCommandEx
             this.comboBoxAddSendKeys.Items.Add("{F16}");
             this.comboBoxAddSendKeys.Items.Add(HALF_SPACE_WORD);
             this.comboBoxAddSendKeys.Items.Add(FULL_SPACE_WORD);
+            this.comboBoxAddSendKeys.Items.Add(RANDOM_CHAR);
 
             // Window数比較記号コンボボックスの選択肢を設定
             this.comboBoxCancelWindowCount.Items.Add(COMP_MARK_EQUALS);
@@ -342,6 +344,29 @@ namespace SendKeysCommandEx
             AddSendKeys(command);
         }
 
+        private void buttonAddSleepRandom_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(this.textBoxAddSleepRandomFrom.Text) || Convert.ToInt32(this.textBoxAddSleepRandomFrom.Text) == 0)
+            {
+                MessageBox.Show(this, "Sleep値は 1 以上を設定して下さい。", "注意", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(this.textBoxAddSleepRandomTo.Text) || Convert.ToInt32(this.textBoxAddSleepRandomTo.Text) == 0)
+            {
+                MessageBox.Show(this, "Sleep値は 1 以上を設定して下さい。", "注意", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (Convert.ToInt32(this.textBoxAddSleepRandomTo.Text) < Convert.ToInt32(this.textBoxAddSleepRandomFrom.Text))
+            {
+                MessageBox.Show(this, "Sleepランダム範囲は From < To となるように設定して下さい。", "注意", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            string command = SLEEP_COMMAND + this.textBoxAddSleepRandomFrom.Text + "～" + this.textBoxAddSleepRandomTo.Text + " の範囲でランダムタイム";
+
+            AddSendKeys(command);
+        }
+
         private void buttonAddActive_Click(object sender, RoutedEventArgs e)
         {
             string command = ACTIVATE_COMMAND + this.textBoxActivePID.Text;
@@ -544,8 +569,18 @@ namespace SendKeysCommandEx
         {
             if (command.StartsWith(SLEEP_COMMAND))
             {
-                int sleepTime = Convert.ToInt32(command.Substring(SLEEP_COMMAND.Length));
-                System.Threading.Thread.Sleep(sleepTime);
+                if (command.Contains("～"))
+                {
+                    string span = command.Substring(SLEEP_COMMAND.Length).Split(' ')[0];
+                    int sleepRandomFrom = Convert.ToInt32(span.Split('～')[0]);
+                    int sleepRandomTo = Convert.ToInt32(span.Split('～')[1]);
+                    System.Threading.Thread.Sleep(new Random().Next(sleepRandomFrom, sleepRandomTo));
+                }
+                else
+                {
+                    int sleepTime = Convert.ToInt32(command.Substring(SLEEP_COMMAND.Length));
+                    System.Threading.Thread.Sleep(sleepTime);
+                }
             }
             else if (command.StartsWith(ACTIVATE_COMMAND))
             {
@@ -612,7 +647,15 @@ namespace SendKeysCommandEx
                 {
                     try
                     {
-                        System.Windows.Forms.SendKeys.SendWait(command.Replace(HALF_SPACE_WORD," ").Replace(FULL_SPACE_WORD,"　"));
+                        string[] randomChars =
+                            {
+                                "0","1","2","3","4","5","6","7","8","9",
+                                "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+                                "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
+                                "!","\"","#","$","{%}","&","'","{(}","{)}","*","{+}",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","{^}","_","`","{{}","|","{}}","{~}"
+                            };
+                        int i = new Random().Next(0, randomChars.Length - 1);
+                        System.Windows.Forms.SendKeys.SendWait(command.Replace(HALF_SPACE_WORD, " ").Replace(FULL_SPACE_WORD, "　").Replace(RANDOM_CHAR, randomChars[i]));
                     }
                     catch (Exception)
                     {

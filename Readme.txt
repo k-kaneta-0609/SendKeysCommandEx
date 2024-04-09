@@ -29,9 +29,10 @@ etc...
 
 
 【起動条件】
-・.Net Framework 4.6.1以上が必要
-・実行ファイル（SendKeysCommandEx.exe）の他にSystem.Windows.Interactivity.dllが必要。
+・.Net Framework 4.8以上が必要
+・実行ファイル（SendKeysCommandEx.exe）の他に各種dllが必要。
 　※本当は、EXEファイルだけで実行できるようにしたかったが、WPFの"ビヘイビア"とか言う機能を使ったら、拡張DLLが必要になった。
-
+　　さらに、VS2019で機能修正した際に、DLLが2つ増えた。
 
 置き土産 2017/10/31 K.Kaneta
+機能追加 2024/04/09 K.Kaneta

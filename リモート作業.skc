@@ -1,0 +1,8 @@
+﻿Activate:0
+WaitActivate:0
+{ランダム文字}
+Sleep:1000～20000 の範囲でランダムタイム
+Loop回毎:100 Activate:0
+Loop回毎:100 WaitActivate:3132
+Loop回毎:100 ^a
+Loop回毎:100 {DELETE}
