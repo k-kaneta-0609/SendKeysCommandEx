@@ -106,7 +106,7 @@
         <Button x:Name="buttonReleaseSelected" Content="解除(_R)" HorizontalAlignment="Right" Margin="0,470,20,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="1.573,1.99" Height="24" Click="buttonReleaseSelected_Click"/>
         <Button x:Name="buttonClearSendKeys" Content="ｸﾘｱ(_C)" HorizontalAlignment="Right" Margin="0,0,20,85" VerticalAlignment="Bottom" Width="60" RenderTransformOrigin="1.573,1.99" Height="24" Click="buttonClearSendKeys_Click"/>
         <Label x:Name="labelStartPID" Content="最初にアクティブにするプロセスID：" HorizontalAlignment="Left" Margin="20,0,0,50" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="textBoxStartPID" HorizontalAlignment="Left" Height="23" Margin="240,0,0,53" VerticalAlignment="Bottom" Width="45" HorizontalContentAlignment="Right" MaxLength="5" MaxLines="1">
+        <TextBox x:Name="textBoxStartPID" HorizontalAlignment="Left" Height="23" Margin="240,0,0,53" VerticalAlignment="Bottom" Width="45" HorizontalContentAlignment="Right" MaxLength="5" MaxLines="1" Text="0">
             <i:Interaction.Behaviors>
                 <local:NumberTextBoxBehavior AllowEmpty="True"/>
             </i:Interaction.Behaviors>
